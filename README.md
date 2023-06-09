@@ -4,10 +4,10 @@
     - Proyecto con configuraciones en serenity.conf unicamente para chrome, debe modificarse si se desean capabilities de otros navegadores
 
 ## Name
-Proyecto base de Serenity BDD con Page Object Model (POM)
+Proyecto base de Serenity BDD con Screenplay
 
 ## Description
-This project aims to establish a standard base for test automation with Srenity BDD and POM
+This project aims to establish a standard base for test automation with Srenity BDD and Screenplay
 
 
 ## ✅ Technologies
