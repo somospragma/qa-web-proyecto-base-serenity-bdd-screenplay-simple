@@ -1,18 +1,7 @@
-# Arquetipo Serenity BDD POM
+# Arquetipo Serenity BDD Screenplay
 
 ## Consideraciones
-    - Para ejecutar la funcionalidad de prueba que implementa la utilidad de Base de Datos es importante 
-    que se instacie una Base de datos y se configura en el archivo de configuración ubicado en:
-        ./src/main/resources/configs/congig.properties
-
-    - La funcionalidad de prueba que implementa la utilidad de manejo de documentos de Google Sheet hace uso
-    de un documento de Google Sheet ubicado en el drive de Pragma, por ende las credenciasles que se encuentran
-    en: 
-        ./src/main/resources/credenciales.json
-    fueron generadas por un API de google creado bajo una cuenta de Pragma.
-
-    Dadas las consideraciones anteriores, la implementacion de las utilidades solo se encuentran expuestas a modo 
-    de ejemplo y unicamente funcionaran si se hacen las configuraciones pertinentes.
+    - Proyecto con configuraciones en serenity.conf unicamente para chrome, debe modificarse si se desean capabilities de otros navegadores
 
 ## Name
 Proyecto base de Serenity BDD con Page Object Model (POM)
@@ -23,7 +12,7 @@ This project aims to establish a standard base for test automation with Srenity 
 
 ## ✅ Technologies
 ### This project required:
-- [JDK java] version 1.8
+- [JDK java] version 16
 - [Maven] version
 - [Serenity] version
 - [Cucumbre] version
@@ -46,10 +35,44 @@ git remote add origin https://gitlab.com/calidad_de_software/.../.git
 git branch -M develop
 git push -uf origin develop
 ```
-
-## ** 🛠️ Run after tests to generate report**
+##  🛠️ Run tests Chrome gradle:
 ```
-mvn serenity:aggregate
+gradle clean test -Dcontext=chrome -Dwebdriver.driver=chrome
+gradle clean test --info --stacktrace --tests "ruta.nameRunner" -Dcontext=chrome -Dwebdriver.driver=chrome
+gradle clean test -Dcucumber.options="--tags @someTag" -Dcontext=chrome -Dwebdriver.driver=chrome
+gradle clean test -Dcucumber.options="--tags '@someTag or @someTag'" -Dcontext=chrome -Dwebdriver.driver=chrome
+```
+### ejemplo
+```
+gradle clean test --info --stacktrace --tests "co.com.pragma.runners.GoogleRunner" -Dcontext=chrome -Dwebdriver.driver=chrome
+```
+
+##  🛠️ Run tests Firefox gradle:
+```
+gradle clean test -Dcontext=firefox -Dwebdriver.driver=firefox
+gradle test --tests "co.com.pragma.runners.GoogleRunner" -Dcontext=firefox -Dwebdriver.driver=firefox
+```
+### ejemplo
+```
+gradle clean test --info --stacktrace --tests "co.com.pragma.runners.LoginRunner" -Dcontext=firefox -Dwebdriver.driver=firefox
+```
+
+cucumber.options might be cucumberOptions according to version
+
+## **Run tests in different environments:**
+```
+gradle command... -Denvironment=defaul
+gradle command... -Denvironment=dev
+gradle command... -Denvironment=qa
+gradle command... -Denvironment=prod
+```
+Note: 
+- The default environment will be used if no other value is provided
+- Could modify the environment urls in .../test/resources/serenity.conf
+
+## ** 🛠️ Run after tests to generate report, If is necesary **
+```
+gradle serenity:aggregate
 ```
 
 ## Collaborate with your team
