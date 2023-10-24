@@ -1,11 +1,11 @@
 package co.com.proyectobase.screenplay.tasks;
 
 import co.com.proyectobase.screenplay.ui.GooglePage;
+import net.serenitybdd.annotations.Step;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.thucydides.core.annotations.Step;
 
 public class SearchWord implements Task {
 
